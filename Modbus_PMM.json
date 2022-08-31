@@ -1,0 +1,237 @@
+[
+    {
+        "id": "8137850639a38754",
+        "type": "modbus-write",
+        "z": "831fc420f4ebbd11",
+        "name": "FC16 - 512",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "unitid": "",
+        "dataType": "MHoldingRegisters",
+        "adr": "512",
+        "quantity": "4",
+        "server": "22686392499a3421",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 510,
+        "y": 540,
+        "wires": [
+            [
+                "9fee466534bfcb96"
+            ],
+            [
+                "9fee466534bfcb96"
+            ]
+        ]
+    },
+    {
+        "id": "1302b842e34b4158",
+        "type": "comment",
+        "z": "831fc420f4ebbd11",
+        "name": "Control  - Write ",
+        "info": "",
+        "x": 160,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "495bf7b5d0b3bf6e",
+        "type": "function",
+        "z": "831fc420f4ebbd11",
+        "name": "",
+        "func": "msg.payload = [768,2560,7967,7967];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 540,
+        "wires": [
+            [
+                "8137850639a38754",
+                "9fee466534bfcb96"
+            ]
+        ]
+    },
+    {
+        "id": "476bbe061b1548e8",
+        "type": "inject",
+        "z": "831fc420f4ebbd11",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 540,
+        "wires": [
+            [
+                "495bf7b5d0b3bf6e"
+            ]
+        ]
+    },
+    {
+        "id": "4ec9582cad76e6e1",
+        "type": "comment",
+        "z": "831fc420f4ebbd11",
+        "name": "Control - Register",
+        "info": "",
+        "x": 150,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "9fee466534bfcb96",
+        "type": "debug",
+        "z": "831fc420f4ebbd11",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "cd59e6b7c777b8a6",
+        "type": "modbus-read",
+        "z": "831fc420f4ebbd11",
+        "name": "FC3 - 512",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "unitid": "",
+        "dataType": "HoldingRegister",
+        "adr": "512",
+        "quantity": "4",
+        "rate": "5",
+        "rateUnit": "h",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "22686392499a3421",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 180,
+        "y": 660,
+        "wires": [
+            [
+                "9fee466534bfcb96"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9a2e7479f0e1e022",
+        "type": "comment",
+        "z": "831fc420f4ebbd11",
+        "name": "Status/Process",
+        "info": "",
+        "x": 160,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "52797a2eedd88e4e",
+        "type": "debug",
+        "z": "831fc420f4ebbd11",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "a658420c4764334e",
+        "type": "modbus-read",
+        "z": "831fc420f4ebbd11",
+        "name": "FC4 - 0",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "unitid": "",
+        "dataType": "InputRegister",
+        "adr": "0",
+        "quantity": "12",
+        "rate": "5",
+        "rateUnit": "h",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "22686392499a3421",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 170,
+        "y": 800,
+        "wires": [
+            [
+                "52797a2eedd88e4e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9f170ed278aaf860",
+        "type": "comment",
+        "z": "831fc420f4ebbd11",
+        "name": "///////////////////// Power Measurment (750-495) /////////////////////",
+        "info": "",
+        "x": 210,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "22686392499a3421",
+        "type": "modbus-client",
+        "name": "",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "192.168.50.25",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": 1,
+        "commandDelay": 1,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": true
+    }
+]
